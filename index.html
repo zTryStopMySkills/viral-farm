@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zReturns Viral Farm</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh; color: #fff;
+        }
+        header {
+            background: rgba(0,0,0,0.3); backdrop-filter: blur(10px);
+            padding: 2rem; text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo {
+            font-size: 2.5rem; font-weight: 800;
+            background: linear-gradient(90deg, #e94560, #ff6b6b);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .subtitle { color: rgba(255,255,255,0.6); margin-top: 0.5rem; }
+        .filters {
+            display: flex; justify-content: center; gap: 1rem;
+            padding: 1.5rem; flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            color: #fff; padding: 0.75rem 1.5rem; border-radius: 50px;
+            cursor: pointer; transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #e94560; border-color: #e94560; transform: translateY(-2px);
+        }
+        .gallery {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem; padding: 2rem; max-width: 1400px; margin: 0 auto;
+        }
+        .video-card {
+            background: rgba(255,255,255,0.05); border-radius: 20px;
+            overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .video-container { position: relative; aspect-ratio: 9/16; background: #000; }
+        .video-container video { width: 100%; height: 100%; object-fit: cover; }
+        .video-info { padding: 1.5rem; }
+        .video-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .video-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+        .badge {
+            padding: 0.25rem 0.75rem; border-radius: 20px;
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+        }
+        .badge-es { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+        .badge-en { background: linear-gradient(135deg, #4834d4, #686de0); }
+        .badge-curiosidades { background: linear-gradient(135deg, #0abde3, #006ba6); }
+        .badge-lifehacks { background: linear-gradient(135deg, #00d2d3, #01a3a4); }
+        .stats {
+            text-align: center; padding: 2rem;
+            background: rgba(0,0,0,0.2); margin-top: 2rem;
+        }
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem; max-width: 600px; margin: 0 auto;
+        }
+        .stat-item h3 { font-size: 2rem; color: #e94560; }
+        .stat-item p { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+        footer {
+            text-align: center; padding: 2rem;
+            color: rgba(255,255,255,0.4); border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .last-updated {
+            text-align: center; color: rgba(255,255,255,0.4);
+            font-size: 0.85rem; padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="logo">zReturns</h1>
+        <p class="subtitle">Viral Farm - AI Video Gallery</p>
+    </header>
+    
+    <div class="filters">
+        <button class="filter-btn active" onclick="filter('all')">🌍 All</button>
+        <button class="filter-btn" onclick="filter('es')">🇪🇸 Español</button>
+        <button class="filter-btn" onclick="filter('en')">🇬🇧 English</button>
+    </div>
+    
+    <div class="gallery" id="gallery">
+        
+        <div class="video-card" data-lang="003" data-niche="lifehacks">
+            <div class="video-container">
+                <video controls preload="metadata">
+                    <source src="videos/lifehacks_lifehack_003_20260219_044305.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Video</h3>
+                <div class="video-meta">
+                    <span class="badge badge-en">003</span>
+                    <span class="badge badge-lifehacks">Life Hacks</span>
+                    <span>⏱️ 60s</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card" data-lang="002" data-niche="lifehacks">
+            <div class="video-container">
+                <video controls preload="metadata">
+                    <source src="videos/lifehacks_lifehack_002_es_20260219_045648.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Video</h3>
+                <div class="video-meta">
+                    <span class="badge badge-en">002</span>
+                    <span class="badge badge-lifehacks">Life Hacks</span>
+                    <span>⏱️ 60s</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card" data-lang="002" data-niche="lifehacks">
+            <div class="video-container">
+                <video controls preload="metadata">
+                    <source src="videos/lifehacks_lifehack_002_20260219_043328.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Video</h3>
+                <div class="video-meta">
+                    <span class="badge badge-en">002</span>
+                    <span class="badge badge-lifehacks">Life Hacks</span>
+                    <span>⏱️ 60s</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card" data-lang="001" data-niche="lifehacks">
+            <div class="video-container">
+                <video controls preload="metadata">
+                    <source src="videos/lifehacks_lifehack_001_es_20260219_045658.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Video</h3>
+                <div class="video-meta">
+                    <span class="badge badge-en">001</span>
+                    <span class="badge badge-lifehacks">Life Hacks</span>
+                    <span>⏱️ 60s</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card" data-lang="001" data-niche="lifehacks">
+            <div class="video-container">
+                <video controls preload="metadata">
+                    <source src="videos/lifehacks_lifehack_001_en_20260219_045713.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Video</h3>
+                <div class="video-meta">
+                    <span class="badge badge-en">001</span>
+                    <span class="badge badge-lifehacks">Life Hacks</span>
+                    <span>⏱️ 60s</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card" data-lang="001" data-niche="lifehacks">
+            <div class="video-container">
+                <video controls preload="metadata">
+                    <source src="videos/lifehacks_lifehack_001_en_20260219_045706.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Video</h3>
+                <div class="video-meta">
+                    <span class="badge badge-en">001</span>
+                    <span class="badge badge-lifehacks">Life Hacks</span>
+                    <span>⏱️ 60s</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card" data-lang="005" data-niche="curiosidades">
+            <div class="video-container">
+                <video controls preload="metadata">
+                    <source src="videos/curiosidades_curiosity_005_en_20260219_045635.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Video</h3>
+                <div class="video-meta">
+                    <span class="badge badge-en">005</span>
+                    <span class="badge badge-curiosidades">Curiosities</span>
+                    <span>⏱️ 30s</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card" data-lang="003" data-niche="curiosidades">
+            <div class="video-container">
+                <video controls preload="metadata">
+                    <source src="videos/curiosidades_curiosity_003_es_20260219_045629.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Video</h3>
+                <div class="video-meta">
+                    <span class="badge badge-en">003</span>
+                    <span class="badge badge-curiosidades">Curiosities</span>
+                    <span>⏱️ 30s</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card" data-lang="004" data-niche="curiosidades">
+            <div class="video-container">
+                <video controls preload="metadata">
+                    <source src="videos/curiosidades_curiosidad_004_20260219_043320.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Video</h3>
+                <div class="video-meta">
+                    <span class="badge badge-en">004</span>
+                    <span class="badge badge-curiosidades">Curiosities</span>
+                    <span>⏱️ 30s</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card" data-lang="002" data-niche="curiosidades">
+            <div class="video-container">
+                <video controls preload="metadata">
+                    <source src="videos/curiosidades_curiosidad_002_20260219_044254.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Video</h3>
+                <div class="video-meta">
+                    <span class="badge badge-en">002</span>
+                    <span class="badge badge-curiosidades">Curiosities</span>
+                    <span>⏱️ 30s</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card" data-lang="001" data-niche="curiosidades">
+            <div class="video-container">
+                <video controls preload="metadata">
+                    <source src="videos/curiosidades_curiosidad_001_20260219_044414.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Video</h3>
+                <div class="video-meta">
+                    <span class="badge badge-en">001</span>
+                    <span class="badge badge-curiosidades">Curiosities</span>
+                    <span>⏱️ 30s</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <p class="last-updated">🔄 Last updated: 2026-02-19 04:57</p>
+    
+    <div class="stats">
+        <div class="stats-grid">
+            <div class="stat-item"><h3>11</h3><p>Total Videos</p></div>
+            <div class="stat-item"><h3>3</h3><p>🇪🇸 Español</p></div>
+            <div class="stat-item"><h3>3</h3><p>🇬🇧 English</p></div>
+            <div class="stat-item"><h3>24/7</h3><p>Auto-Gen</p></div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2026 zReturns - Viral Farm | Generated with AI 🤖</p>
+    </footer>
+    
+    <script>
+        function filter(type) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.video-card').forEach(card => {
+                card.style.display = (type === 'all' || card.dataset.lang === type) ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
