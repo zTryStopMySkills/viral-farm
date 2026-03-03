@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procesamiento de Video - Resultados</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #a832a8;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .video-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .video-card h3 {
+            color: #a832a8;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .video-card p {
+            color: #aaa;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        .video-card video {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #a832a8, #6a1b9a);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .download-btn:hover {
+            transform: scale(1.05);
+        }
+        .original {
+            border: 2px solid #FFD700;
+            background: rgba(255,215,0,0.1);
+        }
+        .best {
+            border: 2px solid #00ff88;
+            background: rgba(0,255,136,0.1);
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .badge-original { background: #FFD700; color: #000; }
+        .badge-best { background: #00ff88; color: #000; }
+        .instructions {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+        .instructions h2 {
+            color: #a832a8;
+            margin-bottom: 15px;
+        }
+        .instructions ul {
+            margin-left: 20px;
+            color: #ccc;
+        }
+        .instructions li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Resultados del Procesamiento</h1>
+        <p class="subtitle">Video procesado con múltiples métodos para eliminar música de fondo</p>
+
+        <div class="video-grid">
+            <!-- ORIGINAL -->
+            <div class="video-card original">
+                <h3>Video Original <span class="badge badge-original">ORIGINAL</span></h3>
+                <p>Video original sin procesar. Contiene música de fondo + diálogo.</p>
+                <video controls poster="">
+                    <source src="input_video.mp4" type="video/mp4">
+                    Tu navegador no soporta video HTML5.
+                </video>
+                <a href="input_video.mp4" download class="download-btn">⬇️ Descargar Original</a>
+            </div>
+
+            <!-- MÉTODO 2 -->
+            <div class="video-card">
+                <h3>Método 2: Compresión Dinámica</h3>
+                <p>Usa compresión dinámica agresiva para atenuar música. Reduce picos de audio y realza diálogo.</p>
+                <video controls>
+                    <source src="input_video_method2_compressed.mp4" type="video/mp4">
+                </video>
+                <a href="input_video_method2_compressed.mp4" download class="download-btn">⬇️ Descargar</a>
+            </div>
+
+            <!-- MÉTODO 3 -->
+            <div class="video-card">
+                <h3>Método 3: Canal Mono + Filtros</h3>
+                <p>Convierte a mono y aplica filtros de frecuencia enfocados en rango vocal (200-4000Hz).</p>
+                <video controls>
+                    <source src="input_video_method3_mono.mp4" type="video/mp4">
+                </video>
+                <a href="input_video_method3_mono.mp4" download class="download-btn">⬇️ Descargar</a>
+            </div>
+
+            <!-- MÉTODO 4 -->
+            <div class="video-card best">
+                <h3>Método 4: Filtro Avanzado <span class="badge badge-best">RECOMENDADO</span></h3>
+                <p>Combina highpass, lowpass, ecualización y compresión multibanda. Mayor reducción de música.</p>
+                <video controls>
+                    <source src="input_video_method4_advanced.mp4" type="video/mp4">
+                </video>
+                <a href="input_video_method4_advanced.mp4" download class="download-btn">⬇️ Descargar</a>
+            </div>
+
+            <!-- MÉTODO 5 -->
+            <div class="video-card">
+                <h3>Método 5: Limiter + Volumen</h3>
+                <p>Usa limitador para controlar picos y aumenta volumen general. Útil si el diálogo es bajo.</p>
+                <video controls>
+                    <source src="input_video_method5_limiter.mp4" type="video/mp4">
+                </video>
+                <a href="input_video_method5_limiter.mp4" download class="download-btn">⬇️ Descargar</a>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h2>📋 Instrucciones</h2>
+            <ul>
+                <li><strong>Prueba cada método</strong> y elige el que mejor suene para tu caso específico.</li>
+                <li><strong>Método 4 (Avanzado)</strong> suele dar los mejores resultados para reducir música de fondo.</li>
+                <li><strong>Método 3 (Mono)</strong> es útil si la música está mayormente en estéreo.</li>
+                <li>Para <strong>mejor calidad profesional</strong>, se recomienda usar Demucs (requiere instalación de IA).</li>
+                <li>Todos los videos mantienen la calidad de imagen original, solo se procesó el audio.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
